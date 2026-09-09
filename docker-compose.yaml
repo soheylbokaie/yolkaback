@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    container_name: django_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: panah_shop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"

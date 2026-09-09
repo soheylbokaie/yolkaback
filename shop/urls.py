@@ -9,11 +9,19 @@ from .views import (
     ProductViewSet,
     WoodListView,
 )
+from django.http import JsonResponse
+from django.urls import path, include
+
+
+def health(request):
+    return JsonResponse({"status": "ok", "message": "Yolka API is running"})
+
 
 router = DefaultRouter()
 router.register("products", ProductViewSet, basename="product")
 
 urlpatterns = [
+    path("", health),
     path("", include(router.urls)),
     path("categories/", CategoryListView.as_view(), name="categories"),
     path("woods/", WoodListView.as_view(), name="woods"),
